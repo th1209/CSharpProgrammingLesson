@@ -5,7 +5,6 @@ using System.Text;
 using System.Diagnostics;
 using NUnit.Framework;
 using Aoj.ALDS.Chapter9C;
-//using Xunit;
 
 namespace Aoj.ALDS.Chapter9CTest
 {
@@ -13,21 +12,16 @@ namespace Aoj.ALDS.Chapter9CTest
     public class PriorityQueueTest
     {
         [Test]
-        //[Fact]
-        public void TestRandomly()
+        public void TestAscendingCase()
         {
-            var queue = new PriorityQueue<int>();
-            //var array = new int[1000];
+            var queue = new PriorityQueue<int>(SortOrder.Asc);
 
             var rand = new Random();
             for (int i = 0; i < 1000; i++)
             {
                 int value = rand.Next(-999, 1000);
                 queue.Enqueue(value);
-                //array[i] = value;
             }
-
-            //var sortedArray = array.OrderBy(item => item);
 
             var popArray = new int[1000];
             for (int i = 0; i < 1000; i++)
@@ -35,8 +29,28 @@ namespace Aoj.ALDS.Chapter9CTest
                 popArray[i] = queue.Dequeue();
             }
 
+            Assert.That(popArray, Is.Ordered);
+        }
 
-            CollectionAssert.IsOrdered(popArray);
+        [Test]
+        public void TestDescendingCase()
+        {
+            var queue = new PriorityQueue<int>(SortOrder.Desc);
+
+            var rand = new Random();
+            for (int i = 0; i < 1000; i++)
+            {
+                int value = rand.Next(-999, 1000);
+                queue.Enqueue(value);
+            }
+
+            var popArray = new int[1000];
+            for (int i = 0; i < 1000; i++)
+            {
+                popArray[i] = queue.Dequeue();
+            }
+
+            Assert.That(popArray, Is.Ordered.Descending);
         }
     }
 }

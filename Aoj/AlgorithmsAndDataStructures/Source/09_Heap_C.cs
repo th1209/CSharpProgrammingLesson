@@ -6,137 +6,6 @@ using System.Diagnostics;
 
 namespace Aoj.ALDS.Chapter9C
 {
-    // public class PriorityQueue<T> where T : IComparable<T>
-    // {
-    //     private List<T> Values;
-
-    //     public PriorityQueue()
-    //     {
-    //         Values = new List<T>();
-    //     }
-
-    //     public void Insert(T value)
-    //     {
-    //         Values.Add(value);
-
-    //         BuildMaxHeap();
-    //         //MaxHeapify(1);
-    //     }
-
-    //     // public T Max()
-    //     // {
-    //     //     if (Count() < 1)
-    //     //     {
-    //     //         return default(T);
-    //     //     }
-
-    //     //     return Values[1];
-    //     // }
-
-    //     public T Pop(int index)
-    //     {
-    //         if (! Exists(index))
-    //         {
-    //             throw new System.ArgumentOutOfRangeException("");
-    //         }
-
-    //         T value = Value(index);
-    //         Values[index - 1] = Values[Count() - 1];
-    //         Values.RemoveAt(Count() - 1);
-
-    //         MaxHeapify(index);
-
-    //         return value;
-    //     }
-
-    //     public T Peek(int index)
-    //     {
-    //         if (! Exists(index))
-    //         {
-    //             throw new System.ArgumentOutOfRangeException("");
-    //         }
-
-    //         return Value(index);
-    //     }
-
-    //     public int Count()
-    //     {
-    //         return Values.Count();
-    //     }
-
-    //     private bool Exists(int index)
-    //     {
-    //         return 1 <= index && index <= Count();
-    //     }
-
-    //     // TODO 要らなそうならコメントアウトする。
-    //     private void BuildMaxHeap()
-    //     {
-    //         for (int i = Count() / 2; i >= 1; i--)
-    //         {
-    //             MaxHeapify(i);
-    //         }
-    //     }
-
-    //     private void MaxHeapify(int index)
-    //     {
-    //         int largestIndex = index;
-    //         T largestValue = Value(index);
-
-    //         int leftIndex = LeftIndex(index);
-    //         if (Exists(leftIndex) && Value(leftIndex).CompareTo(largestValue) > 0)
-    //         {
-    //             largestIndex = leftIndex;
-    //             largestValue = Value(leftIndex);
-    //         }
-
-    //         int rightIndex = RightIndex(index);
-    //         if (Exists(rightIndex) && Value(rightIndex).CompareTo(largestValue) > 0)
-    //         {
-    //             largestIndex = rightIndex;
-    //             largestValue = Value(rightIndex);
-    //         }
-
-    //         if (largestIndex != index)
-    //         {
-    //             Swap(index, largestIndex);
-    //             MaxHeapify(largestIndex);
-    //         }
-    //     }
-
-    //     private void Swap(int i1, int i2)
-    //     {
-    //         T tmp = Values[i1 - 1];
-    //         Values[i1 - 1] = Values[i2 - 1];
-    //         Values[i2 - 1] = tmp;
-    //     }
-
-    //     private T Value(int index)
-    //     {
-    //         if (Exists(index))
-    //         {
-    //             // ヒープは1始まりで、リストは0始まりなので1ずらす。
-    //             return Values[index - 1];
-    //         }
-    //         return default(T);
-    //     }
-
-    //     private int ParentIndex(int index)
-    //     {
-    //         return index / 2;
-    //     }
-
-    //     private int LeftIndex(int index)
-    //     {
-    //         return index * 2;
-    //     }
-
-    //     private int RightIndex(int index)
-    //     {
-    //         return index * 2 + 1;
-    //     }
-    // }
-
     public enum SortOrder
     {
         Asc,
@@ -152,11 +21,13 @@ namespace Aoj.ALDS.Chapter9C
 
         private T[] _heap;
         private int _count;
+        private SortOrder _sortOrder;
 
         public PriorityQueue(SortOrder sortOrder = SortOrder.Asc, int initSize = 128)
         {
             _heap  = new T[initSize];
             _count = 0;
+            _sortOrder = sortOrder;
         }
 
         public void Enqueue(T t)
@@ -171,7 +42,8 @@ namespace Aoj.ALDS.Chapter9C
             {
                 int parent = (current - 1) / 2;
                 //TODO
-                if (t.CompareTo(_heap[parent]) >= 0)
+                if (Compare(t, _heap[parent]) >= 0)
+                //if (t.CompareTo(_heap[parent]) >= 0)
                     break;
                 
                  _heap[current] = _heap[parent];
@@ -200,10 +72,12 @@ namespace Aoj.ALDS.Chapter9C
                 int left  = current * 2 + 1;
                 int right = current * 2 + 2;
 
-                if (right <= _count && _heap[left].CompareTo(_heap[right]) > 0)
+                if (right <= _count && Compare(_heap[left], _heap[right]) > 0)
+                //if (right <= _count && _heap[left].CompareTo(_heap[right]) > 0)
                     left = right;
 
-                if (t.CompareTo(_heap[left]) < 0)
+                if (Compare(t, _heap[left]) < 0)
+                //if (t.CompareTo(_heap[left]) < 0)
                     break;
 
                 _heap[current] = _heap[left];
@@ -242,6 +116,16 @@ namespace Aoj.ALDS.Chapter9C
             return false;
         }
 
+        public T[] ToArray()
+        {
+            var array = new T[_count];
+            for (int i = 0; i < _count; i++)
+            {
+                array[i] = _heap[i];
+            }
+            return array;
+        }
+
         private void ResizeIfNeeded()
         {
             if (_count > _heap.Length)
@@ -255,14 +139,11 @@ namespace Aoj.ALDS.Chapter9C
             }
         }
 
-        public T[] ToArray()
+        private int Compare(T left, T right)
         {
-            var array = new T[_count];
-            for (int i = 0; i < _count; i++)
-            {
-                array[i] = _heap[i];
-            }
-            return array;
+            return (_sortOrder == SortOrder.Asc)
+                ? left.CompareTo(right)
+                : left.CompareTo(right) * -1;
         }
     }
 
@@ -270,53 +151,32 @@ namespace Aoj.ALDS.Chapter9C
     {
         public static void Solve()
         {
-            var queue = new PriorityQueue<int>();
+            var queue = new PriorityQueue<int>(SortOrder.Desc);
 
-            var rand = new Random();
-            var count = 100;
-            for (int i = 0; i < count; i++)
+            while(true)
             {
-                int value = rand.Next(-999, 1000);
-                queue.Enqueue(value);
+                string[] inputs = Console.ReadLine().Split(' ');
+                switch (inputs[0])
+                {
+                    case "insert":
+                        queue.Enqueue(int.Parse(inputs[1]));
+                        break;
+                    case "extract":
+                        Console.WriteLine(queue.Dequeue());
+                        break;
+                    case "end":
+                        goto LOOPEND; 
+                    default:
+                        throw new System.IO.IOException("");
+                }
             }
-
-
-            var popArray = new int[count];
-            for (int i = 0; i < count; i++)
-            {
-                popArray[i] = queue.Dequeue();
-            }
-
-            Console.WriteLine("end");
-
-
-
-            // var queue = new PriorityQueue<int>();
-
-            // while(true)
-            // {
-            //     string[] inputs = Console.ReadLine().Split(' ');
-            //     switch (inputs[0])
-            //     {
-            //         case "insert":
-            //             queue.Insert(int.Parse(inputs[1]));
-            //             break;
-            //         case "extract":
-            //             Console.WriteLine(queue.Pop(1));
-            //             break;
-            //         case "end":
-            //             goto LOOPEND; 
-            //         default:
-            //             throw new System.IO.IOException("");
-            //     }
-            // }
-            // LOOPEND:
-            // ;
+            LOOPEND:
+            ;
         }
 
         // public static void Main()
         // {
-        //     // Console.SetIn(new System.IO.StreamReader("Aoj/AlgorithmsAndDataStructures/Input/09_Heap_C_01.txt"));
+        //     // Console.SetIn(new System.IO.StreamReader("AlgorithmsAndDataStructures/Input/09_Heap_C_01.txt"));
         //     // var sw = new Stopwatch();
         //     // sw.Start();
         //     Solve();
