@@ -33,7 +33,7 @@ namespace Aoj.ALDS.Chapter4C
 
         // public static void Main()
         // {
-        //     Console.SetIn(new System.IO.StreamReader("Aoj/AlgorithmsAndDataStructures/Input/04_Search_C_01.txt"));
+        //     Console.SetIn(new System.IO.StreamReader("AlgorithmsAndDataStructures/Input/04_Search_C_01.txt"));
         //     // var sw = new Stopwatch();
         //     // sw.Start();
 

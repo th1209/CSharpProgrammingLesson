@@ -82,7 +82,7 @@ namespace Aoj.ALDS.Chapter6B
         }
         // public static void Main()
         // {
-        //     // Console.SetIn(new System.IO.StreamReader("Aoj/AlgorithmsAndDataStructures/Input/06_Sort_B_01.txt"));
+        //     // Console.SetIn(new System.IO.StreamReader("AlgorithmsAndDataStructures/Input/06_Sort_B_01.txt"));
         //     Solve();
         // }
     }

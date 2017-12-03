@@ -28,7 +28,7 @@ namespace Aoj.ALDS.Chapter5A
 
         // public static void Main()
         // {
-        //     // Console.SetIn(new System.IO.StreamReader("Aoj/AlgorithmsAndDataStructures/Input/05_Recursion_A_01.txt"));
+        //     // Console.SetIn(new System.IO.StreamReader("AlgorithmsAndDataStructures/Input/05_Recursion_A_01.txt"));
         //     // var sw = new Stopwatch();
         //     // sw.Start();
 
@@ -69,7 +69,7 @@ namespace Aoj.ALDS.Chapter5A
 
         // public static void Main()
         // {
-        //     // Console.SetIn(new System.IO.StreamReader("Aoj/AlgorithmsAndDataStructures/Input/05_Recursion_A_01.txt"));
+        //     // Console.SetIn(new System.IO.StreamReader("AlgorithmsAndDataStructures/Input/05_Recursion_A_01.txt"));
         //     // var sw = new Stopwatch();
         //     // sw.Start();
 

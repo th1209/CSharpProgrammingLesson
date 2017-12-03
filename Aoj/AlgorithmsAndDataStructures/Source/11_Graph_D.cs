@@ -69,7 +69,7 @@ namespace Aoj.ALDS.Chapter11D
 
         // public static void Main()
         // {
-        //     Console.SetIn(new System.IO.StreamReader("Aoj/AlgorithmsAndDataStructures/Input/11_Graph_D_01.txt"));
+        //     Console.SetIn(new System.IO.StreamReader("AlgorithmsAndDataStructures/Input/11_Graph_D_01.txt"));
         //     var sw = new Stopwatch();
         //     sw.Start();
 

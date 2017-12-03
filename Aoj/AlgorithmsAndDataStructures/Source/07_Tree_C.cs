@@ -117,7 +117,7 @@ namespace Aoj.ALDS.Chapter7C
 
         // public static void Main()
         // {
-        //     Console.SetIn(new System.IO.StreamReader("Aoj/AlgorithmsAndDataStructures/Input/07_Tree_C_01.txt"));
+        //     Console.SetIn(new System.IO.StreamReader("AlgorithmsAndDataStructures/Input/07_Tree_C_01.txt"));
         //     Solve();
         // }
     }

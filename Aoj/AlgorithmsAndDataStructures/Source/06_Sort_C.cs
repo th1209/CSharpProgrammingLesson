@@ -190,7 +190,7 @@ namespace Aoj.ALDS.Chapter6C
         }
         // public static void Main()
         // {
-        //     Console.SetIn(new System.IO.StreamReader("Aoj/AlgorithmsAndDataStructures/Input/06_Sort_C_03.txt"));
+        //     Console.SetIn(new System.IO.StreamReader("AlgorithmsAndDataStructures/Input/06_Sort_C_03.txt"));
         //     Solve();
         // }
     }

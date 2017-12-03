@@ -136,7 +136,7 @@ namespace Aoj.ALDS.Chapter9B
 
         // public static void Main()
         // {
-        //     Console.SetIn(new System.IO.StreamReader("Aoj/AlgorithmsAndDataStructures/Input/09_Heap_B_01.txt"));
+        //     Console.SetIn(new System.IO.StreamReader("AlgorithmsAndDataStructures/Input/09_Heap_B_01.txt"));
         //     var sw = new Stopwatch();
         //     sw.Start();
         //     Solve();

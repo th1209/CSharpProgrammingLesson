@@ -277,7 +277,7 @@ namespace Aoj.ALDS.Chapter8C
         }
         // public static void Main()
         // {
-        //     Console.SetIn(new System.IO.StreamReader("Aoj/AlgorithmsAndDataStructures/Input/08_BinarySearchTree_C_02.txt"));
+        //     Console.SetIn(new System.IO.StreamReader("AlgorithmsAndDataStructures/Input/08_BinarySearchTree_C_02.txt"));
         //     //var sw = new Stopwatch();
         //     //sw.Start();
         //     Solve();
